@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "87789966484",
+    "project_id": "stress-awareness",
+    "storage_bucket": "stress-awareness.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87789966484:android:c7906265a10a4a80df9081",
+        "android_client_info": {
+          "package_name": "com.example.stress_awareness"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjnsHeRlF1D0ypqnskRfRAe_f-Cjl1Ojo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
