@@ -364,7 +364,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,
                       elevation: 0,
-                    ),                    
+                    ),
                     onPressed: () {
                       _setDailyGoals(context);
                     },
@@ -378,7 +378,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 16),
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 18,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(18),
@@ -423,7 +426,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 16),
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 18,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(18),
@@ -613,6 +619,122 @@ class _StressLevelPulsePainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
+class _TherapyBrainPainter extends CustomPainter {
+  const _TherapyBrainPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()
+      ..color = const Color(0xFF85B894)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.2
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
+
+    final Path leftOuter = Path()
+      ..moveTo(size.width * 0.49, size.height * 0.20)
+      ..cubicTo(
+        size.width * 0.34,
+        size.height * 0.10,
+        size.width * 0.20,
+        size.height * 0.22,
+        size.width * 0.24,
+        size.height * 0.39,
+      )
+      ..cubicTo(
+        size.width * 0.10,
+        size.height * 0.44,
+        size.width * 0.11,
+        size.height * 0.65,
+        size.width * 0.25,
+        size.height * 0.68,
+      )
+      ..cubicTo(
+        size.width * 0.20,
+        size.height * 0.86,
+        size.width * 0.42,
+        size.height * 0.94,
+        size.width * 0.49,
+        size.height * 0.77,
+      )
+      ..lineTo(size.width * 0.49, size.height * 0.20);
+
+    final Path rightOuter = Path()
+      ..moveTo(size.width * 0.51, size.height * 0.20)
+      ..cubicTo(
+        size.width * 0.66,
+        size.height * 0.10,
+        size.width * 0.80,
+        size.height * 0.22,
+        size.width * 0.76,
+        size.height * 0.39,
+      )
+      ..cubicTo(
+        size.width * 0.90,
+        size.height * 0.44,
+        size.width * 0.89,
+        size.height * 0.65,
+        size.width * 0.75,
+        size.height * 0.68,
+      )
+      ..cubicTo(
+        size.width * 0.80,
+        size.height * 0.86,
+        size.width * 0.58,
+        size.height * 0.94,
+        size.width * 0.51,
+        size.height * 0.77,
+      )
+      ..lineTo(size.width * 0.51, size.height * 0.20);
+
+    final Path leftFold = Path()
+      ..moveTo(size.width * 0.36, size.height * 0.28)
+      ..cubicTo(
+        size.width * 0.26,
+        size.height * 0.30,
+        size.width * 0.28,
+        size.height * 0.45,
+        size.width * 0.39,
+        size.height * 0.45,
+      )
+      ..cubicTo(
+        size.width * 0.26,
+        size.height * 0.48,
+        size.width * 0.29,
+        size.height * 0.64,
+        size.width * 0.42,
+        size.height * 0.61,
+      );
+
+    final Path rightFold = Path()
+      ..moveTo(size.width * 0.64, size.height * 0.28)
+      ..cubicTo(
+        size.width * 0.74,
+        size.height * 0.30,
+        size.width * 0.72,
+        size.height * 0.45,
+        size.width * 0.61,
+        size.height * 0.45,
+      )
+      ..cubicTo(
+        size.width * 0.74,
+        size.height * 0.48,
+        size.width * 0.71,
+        size.height * 0.64,
+        size.width * 0.58,
+        size.height * 0.61,
+      );
+
+    canvas.drawPath(leftOuter, paint);
+    canvas.drawPath(rightOuter, paint);
+    canvas.drawPath(leftFold, paint);
+    canvas.drawPath(rightFold, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
 class _DashboardBottomNavigationBar extends StatelessWidget {
   const _DashboardBottomNavigationBar({
     required this.selectedIndex,
@@ -726,18 +848,204 @@ void _setDailyGoals(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return Container(
+        width: double.infinity,
+        padding: const EdgeInsets.only(
+          top: 15,
+          left: 24,
+          right: 24,
+          bottom: 24,
+        ),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              spreadRadius: 5,
-              blurRadius: 10,
+            BoxShadow(color: Colors.black12, spreadRadius: 5, blurRadius: 10),
+          ],
+        ),
+
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 16),
+            const Text(
+              'Set Your Daily Goals',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Choose 2 goals to focus on today',
+              style: TextStyle(fontSize: 14, color: Colors.grey),
+            ),
+            const SizedBox(height: 24),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(
+                  color: const Color(0xFFE4EAF2),
+                  width: 1,
+                ),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 42,
+                    width: 42,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(197, 242, 246, 252),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(
+                      Icons.air_rounded,
+                      color: Color(0xFF6B9BDA),
+                      size: 24,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  const Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Practice Breathing",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF2F3A4F),
+                          ),
+                        ),
+                        Text(
+                          'Complete a breathing exercise',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF667085),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(
+                  color: const Color(0xFFE4EAF2),
+                  width: 1,
+                ),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 42,
+                    width: 42,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(197, 242, 246, 252),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Center(
+                      child: SizedBox(
+                        height: 22,
+                        width: 22,
+                        child: CustomPaint(
+                          painter: _StressLevelPulsePainter(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  const Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Check Stress Levels",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF2F3A4F),
+                          ),
+                        ),
+                        Text(
+                          'Monitor your stress biomarkers',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF667085),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(
+                  color: const Color(0xFFE4EAF2),
+                  width: 1,
+                ),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 42,
+                    width: 42,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF0F6F1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Center(
+                      child: SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: CustomPaint(
+                          painter: _TherapyBrainPainter(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  const Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Try a Therapy Technique",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF2F3A4F),
+                          ),
+                        ),
+                        Text(
+                          'Use mindfulness or cognitive reframing',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF667085),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             )
-          ]
+          ],
         ),
       );
-    }
+    },
   );
 }
